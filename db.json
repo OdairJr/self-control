@@ -1,9 +1,9 @@
 {
   "bills": [
-    { "id": 1, "description": "Carro", "value": 1, "payment-date": "27/03/1996" },
-    { "id": 2, "description": "Alugel", "value": 2, "payment-date": "27/03/1996" },
-    { "id": 3, "description": "Net", "value": 3, "payment-date": "27/03/1996" },
-    { "id": 4, "description": "Cell", "value": 1, "payment-date": "27/03/1996" },
-    { "id": 5, "description": "Fatura", "value": 1, "payment-date": "27/03/1996" }
+    { "id": 1, "description": "Carro", "value": 1, "paymentDate": "27/03/1996" },
+    { "id": 2, "description": "Alugel", "value": 2, "paymentDate": "27/03/1996" },
+    { "id": 3, "description": "Net", "value": 3, "paymentDate": "27/03/1996" },
+    { "id": 4, "description": "Cell", "value": 1, "paymentDate": "27/03/1996" },
+    { "id": 5, "description": "Fatura", "value": 1, "paymentDate": "27/03/1996" }
   ]
 }

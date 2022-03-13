@@ -8,10 +8,10 @@
             <th>Valor</th>
             <th>Data de Pagamento</th>
           </tr>
-          <tr>
-            <td>Parcela do Carro</td>
-            <td>R$ 800,00</td>
-            <td>27/03/1996</td>
+          <tr *ngFor="let bill of bills">
+            <td>{{ bill.description }}</td>
+            <td>R$ {{ bill.value }}</td>
+            <td>{{ bill.paymentDate }}</td>
           </tr>
         </table>
       </div>

@@ -1,18 +1,18 @@
 <h2 class="display-6 text-center mb-4">Contas</h2>
 
-    <div class="row">
-      <div class="col-12">
-        <table>
-          <tr>
-            <th>Descricao</th>
-            <th>Valor</th>
-            <th>Data de Pagamento</th>
-          </tr>
-          <tr *ngFor="let bill of bills">
-            <td>{{ bill.description }}</td>
-            <td>R$ {{ bill.value }}</td>
-            <td>{{ bill.paymentDate }}</td>
-          </tr>
-        </table>
-      </div>
-    </div>
+<div class="row">
+  <div class="col-12">
+    <table>
+      <tr>
+        <th>Descricao</th>
+        <th>Valor</th>
+        <th>Data de Pagamento</th>
+      </tr>
+      <tr *ngFor="let bill of bills">
+        <td>{{ bill.description }}</td>
+        <td>{{ bill.value | currency:'BRL' }}</td>
+        <td>{{ bill.paymentDate }}</td>
+      </tr>
+    </table>
+  </div>
+</div>

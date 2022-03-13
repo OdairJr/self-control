@@ -1,5 +1,5 @@
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit } from '@angular/core';
-import { map, Observable, of } from 'rxjs';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
 import { Bill } from 'src/app/models/bill.model';
 import { BillsService } from 'src/app/services/bills/bills.service';
 
@@ -20,17 +20,7 @@ export class HomeContainerComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  displayStyle = "none";
+  addBill(bill: Bill) {
 
-  openPopup() {
-    var myModal = document.getElementById('myModal')
-    var myInput = document.getElementById('myInput')
-
-    myModal!.addEventListener('shown.bs.modal', function () {
-      myInput!.focus()
-    })
-  }
-  closePopup() {
-    this.displayStyle = "none";
   }
 }

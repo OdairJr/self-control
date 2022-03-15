@@ -1,7 +1,8 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { Bill } from 'src/app/models/bill.model';
 import { BillsService } from 'src/app/services/bills/bills.service';
+import { switchMap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-home',
@@ -11,16 +12,19 @@ import { BillsService } from 'src/app/services/bills/bills.service';
 })
 export class HomeContainerComponent implements OnInit {
 
-  bills$: Observable<Array<Bill>> = this.billsService.getBills();
+  public bills: BehaviorSubject<void> = new BehaviorSubject<void>(undefined);
+  bills$: Observable<Array<Bill>> = this.bills.pipe(switchMap(() => this.billsService.getBills()));
 
   constructor(
-    private readonly billsService: BillsService
+    private readonly billsService: BillsService,
   ) { }
 
   ngOnInit(): void {
   }
 
   addBill(bill: Bill) {
-
+    this.billsService.addBill(bill).subscribe(() => {
+      this.bills.next(undefined);
+    });
   }
 }

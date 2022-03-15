@@ -1,5 +1,5 @@
-import { Component, EventEmitter, OnInit, Output, TemplateRef } from '@angular/core';
-import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { Component, EventEmitter, NgZone, OnInit, Output, TemplateRef } from '@angular/core';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Bill } from 'src/app/models/bill.model';
 
 @Component({
@@ -19,14 +19,14 @@ export class AddBillComponent implements OnInit {
   })
 
   constructor(
-    private modalService: NgbModal
+    private modalService: NgbModal,
   ) { }
 
   ngOnInit(): void {
   }
 
   openModal(content: TemplateRef<any>) {
-    this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
+    this.modalService.open(content, { ariaLabelledBy: 'modal-basic-title' }).result.then((result) => {
       this.addBill.emit(this.bill);
     });
   }

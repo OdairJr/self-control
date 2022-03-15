@@ -8,16 +8,30 @@ import { Bill } from 'src/app/models/bill.model';
 })
 export class BillsService {
 
+  private bills?: Array<Bill>;
+
   constructor(
-    private readonly httpClient: HttpClient
+    private readonly httpClient: HttpClient,
   ) { }
 
   public getBills(): Observable<Array<Bill>> {
+    if(this.bills) {
+      return of([...this.bills]);
+    }
+
     return this.httpClient.get<Array<Bill>>('https://my-json-server.typicode.com/OdairJr/self-control/bills')
       .pipe(
-        tap(result => console.log('Resposta da API: ', result)),
+        tap(result => {
+          this.bills = result;
+          console.log('Resposta da API: ', result);
+        }),
         catchError(this.handleError('Lendo Lista', []))
       );
+  }
+
+  public addBill(bill: Bill): Observable<void> {
+    this.bills?.push(bill);
+    return of(undefined);
   }
 
   /**

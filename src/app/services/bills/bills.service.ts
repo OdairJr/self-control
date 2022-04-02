@@ -1,38 +1,43 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { catchError, Observable, of, tap } from 'rxjs';
+import { catchError, Observable, of, tap, map } from 'rxjs';
 import { Bill } from 'src/app/models/bill.model';
+import { BaseService } from '../base/base.service';
+import { AngularFirestore } from '@angular/fire/compat/firestore';
 
 @Injectable({
   providedIn: 'root'
 })
-export class BillsService {
-
-  private bills?: Array<Bill>;
+export class BillsService extends BaseService<Bill> {
 
   constructor(
-    private readonly httpClient: HttpClient,
-  ) { }
+    private readonly firestore: AngularFirestore,
+  ) {
+    super(firestore, 'bills');
+  }
 
   public getBills(): Observable<Array<Bill>> {
-    if(this.bills) {
-      return of([...this.bills]);
-    }
-
-    return this.httpClient.get<Array<Bill>>('https://my-json-server.typicode.com/OdairJr/self-control/bills')
+    // return this.httpClient.get<Array<Bill>>('https://my-json-server.typicode.com/OdairJr/self-control/bills')
+    return this.getAll()
       .pipe(
         tap(result => {
-          this.bills = result;
           console.log('Resposta da API: ', result);
         }),
-        catchError(this.handleError('Lendo Lista', []))
+        catchError(this.handleError('Erro ao listar', []))
       );
   }
 
-  public addBill(bill: Bill): Observable<void> {
-    this.bills?.push(bill);
-    return of(undefined);
+  public async addBill(bill: Bill) {
+    delete bill.id;
+
+    await this.create({
+      ...bill
+    }).catch(this.handleError('Erro ao cadastrar', []));
   }
+
+  // updatePolicy(policy: Policy) {
+  //   delete policy.id;
+  //   this.update(policy);
+  // }
 
   /**
    * Handle Http operation that failed.

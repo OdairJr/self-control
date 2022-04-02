@@ -12,9 +12,8 @@ export class AddBillComponent implements OnInit {
   @Output() addBill: EventEmitter<Bill> = new EventEmitter();
 
   public bill: Bill = new Bill({
-    id: 0,
     description: '',
-    paymentDate: new Date().toLocaleString(),
+    paymentDate: new Date(),
     value: 0
   })
 

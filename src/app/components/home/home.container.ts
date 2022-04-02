@@ -12,8 +12,7 @@ import { switchMap } from 'rxjs/operators';
 })
 export class HomeContainerComponent implements OnInit {
 
-  public bills: BehaviorSubject<void> = new BehaviorSubject<void>(undefined);
-  bills$: Observable<Array<Bill>> = this.bills.pipe(switchMap(() => this.billsService.getBills()));
+  public bills$ = this.billsService.getBills();
 
   constructor(
     private readonly billsService: BillsService,
@@ -23,8 +22,6 @@ export class HomeContainerComponent implements OnInit {
   }
 
   addBill(bill: Bill) {
-    this.billsService.addBill(bill).subscribe(() => {
-      this.bills.next(undefined);
-    });
+    this.billsService.addBill(bill);
   }
 }

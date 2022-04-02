@@ -23,20 +23,8 @@ import { AngularFireStorageModule } from '@angular/fire/compat/storage';
 import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
 import { AngularFireDatabaseModule } from '@angular/fire/compat/database';
 import { AuthService } from './shared/services/auth.service';
+import { firebaseEnvironment } from './config/firebase.conf';
 
-export const environment = {
-  production: false,
-  firebase: {
-    apiKey: "AIzaSyBFqa6kwsiyGyQ6_EkmEIGrjB6HX7mH28A",
-    authDomain: "self-control-25442.firebaseapp.com",
-    databaseURL: "https://self-control-25442-default-rtdb.firebaseio.com/",
-    projectId: "self-control-25442",
-    storageBucket: "self-control-25442.appspot.com",
-    messagingSenderId: "1028647689871",
-    appId: "1:1028647689871:web:3184d9b0abef2659d3dafa",
-    measurementId: "G-XH8XJ35BTX"
-  }
-};
 
 @NgModule({
   declarations: [
@@ -48,7 +36,7 @@ export const environment = {
     SignInComponent,
     SignUpComponent,
     ForgotPasswordComponent,
-    VerifyEmailComponent
+    VerifyEmailComponent,
   ],
   imports: [
     FormsModule,
@@ -57,7 +45,7 @@ export const environment = {
     AppRoutingModule,
     HttpClientModule,
     NgbModule,
-    AngularFireModule.initializeApp(environment.firebase, 'self-control'),
+    AngularFireModule.initializeApp(firebaseEnvironment.firebase, 'self-control'),
     AngularFireAuthModule,
     AngularFirestoreModule,
     AngularFireStorageModule,

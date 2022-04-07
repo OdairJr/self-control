@@ -25,6 +25,10 @@ import { AngularFireDatabaseModule } from '@angular/fire/compat/database';
 import { AuthService } from './shared/services/auth.service';
 import { firebaseEnvironment } from './config/firebase.conf';
 
+import { registerLocaleData } from '@angular/common';
+import localePt from '@angular/common/locales/pt';
+
+registerLocaleData(localePt);
 
 @NgModule({
   declarations: [

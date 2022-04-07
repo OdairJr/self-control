@@ -15,7 +15,7 @@ export class AddBillComponent implements OnInit {
     description: '',
     paymentDate: new Date(),
     value: 0
-  })
+  });
 
   constructor(
     private modalService: NgbModal,
@@ -27,6 +27,6 @@ export class AddBillComponent implements OnInit {
   openModal(content: TemplateRef<any>) {
     this.modalService.open(content, { ariaLabelledBy: 'modal-basic-title' }).result.then((result) => {
       this.addBill.emit(this.bill);
-    });
+    }, () => {});
   }
 }

@@ -22,8 +22,13 @@ export class BillsService extends BaseService<Bill> {
         tap(result => {
           console.log('Resposta da API: ', result);
         }),
+        map((result) => result.map(bill => new Bill({ ...bill, paymentDate: this.convertToDate(bill.paymentDate) }))),
         catchError(this.handleError('Erro ao listar', []))
       );
+  }
+
+  private convertToDate(date: any): Date {
+    return new Date(date.year, date.month - 1, date.day);
   }
 
   public async addBill(bill: Bill) {

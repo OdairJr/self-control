@@ -11,7 +11,7 @@
       <tr *ngFor="let bill of bills">
         <td>{{ bill.description }}</td>
         <td>{{ bill.value | currency:'BRL' }}</td>
-        <td>{{ bill.paymentDate }}</td>
+        <td>{{ bill.paymentDate | date:'medium':undefined:'pt-BR' }}</td>
       </tr>
     </table>
   </div>

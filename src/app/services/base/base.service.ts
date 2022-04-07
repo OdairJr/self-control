@@ -17,7 +17,7 @@ export class BaseService<T extends BaseModel> {
           previous.push({
             id: current.payload.doc.id,
             ...current.payload.doc.data()
-          })
+          });
           return previous;
         }, []);
       }));

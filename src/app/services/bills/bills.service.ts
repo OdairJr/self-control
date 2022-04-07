@@ -28,7 +28,7 @@ export class BillsService extends BaseService<Bill> {
   }
 
   private convertToDate(date: any): Date {
-    return new Date(date.year, date.month - 1, date.day);
+    return date.toDate();
   }
 
   public async addBill(bill: Bill) {

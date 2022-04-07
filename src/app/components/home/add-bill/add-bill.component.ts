@@ -17,6 +17,20 @@ export class AddBillComponent implements OnInit {
     value: 0
   });
 
+  public datePicker: {
+    day: number,
+    month: number,
+    year: number
+  } = {
+      day: new Date().getDate(),
+      month: new Date().getMonth(),
+      year: new Date().getFullYear()
+    };
+
+  private get getDatePicker(): Date {
+    return new Date(this.datePicker.year, this.datePicker.month - 1, this.datePicker.day);
+  }
+
   constructor(
     private modalService: NgbModal,
   ) { }
@@ -26,7 +40,10 @@ export class AddBillComponent implements OnInit {
 
   openModal(content: TemplateRef<any>) {
     this.modalService.open(content, { ariaLabelledBy: 'modal-basic-title' }).result.then((result) => {
-      this.addBill.emit(this.bill);
-    }, () => {});
+      this.addBill.emit({
+        ...this.bill,
+        paymentDate: this.getDatePicker
+      });
+    }, () => { });
   }
 }

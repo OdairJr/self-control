@@ -14,7 +14,10 @@ export class AddBillComponent implements OnInit {
   public bill: Bill = new Bill({
     description: '',
     paymentDate: new Date(),
-    value: 0
+    value: 0,
+    type: {
+      name: ''
+    }
   });
 
   public datePicker: {

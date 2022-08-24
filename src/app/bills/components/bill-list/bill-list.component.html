@@ -1,0 +1,10 @@
+<p>bill-list works!</p>
+
+<div *ngFor="let bill of  bills$ | async">
+  <label>{{ bill.description }}</label>
+</div>
+
+
+<button (click)="add()">Add</button>
+
+<!-- <button (click)="remove()">Reset Counter</button> -->

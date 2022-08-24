@@ -27,6 +27,11 @@ import { firebaseEnvironment } from './config/firebase.conf';
 
 import { registerLocaleData } from '@angular/common';
 import localePt from '@angular/common/locales/pt';
+import { StoreModule } from '@ngrx/store';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { environment } from 'src/environments/environment';
+import { BillsModule } from './bills/bills.module';
+// import { cartReducer, counterReducer } from './reducers/cart.reducer';
 
 registerLocaleData(localePt);
 
@@ -54,6 +59,14 @@ registerLocaleData(localePt);
     AngularFirestoreModule,
     AngularFireStorageModule,
     AngularFireDatabaseModule,
+    StoreModule.forRoot({
+      // cart: cartReducer,
+    }),
+    StoreDevtoolsModule.instrument({
+      name: 'NgRx Demo App',
+      logOnly: environment.production
+    }),
+    BillsModule
   ],
   providers: [
     AuthService
